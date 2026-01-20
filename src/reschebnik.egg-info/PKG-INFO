@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: reschebnik
+Version: 0.1.0
+Summary: Решебник для ЕГЭ по информатике
+Provides-Extra: parser
+Requires-Dist: Selenium; extra == "parser"
+Provides-Extra: bot
+Requires-Dist: aiogram; extra == "bot"
+Provides-Extra: database
+Requires-Dist: asyncpg; extra == "database"
+Requires-Dist: Databases; extra == "database"

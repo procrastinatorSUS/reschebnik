@@ -1,0 +1,10 @@
+
+[bot]
+aiogram
+
+[database]
+asyncpg
+Databases
+
+[parser]
+Selenium

@@ -1,0 +1,14 @@
+pyproject.toml
+src/bot/__init__.py
+src/common/__init__.py
+src/common/database/__init__.py
+src/common/database/connection.py
+src/parser/__init__.py
+src/parser/config.py
+src/parser/main.py
+src/parser/parser_core.py
+src/parser/storage.py
+src/reschebnik.egg-info/PKG-INFO
+src/reschebnik.egg-info/SOURCES.txt
+src/reschebnik.egg-info/dependency_links.txt
+src/reschebnik.egg-info/top_level.txt
