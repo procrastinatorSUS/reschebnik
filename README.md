@@ -50,4 +50,4 @@ ssh-copy-id -i ~\.ssh\id_ed25519.pub username@server_ip
 ssh -i path_to_your_private_key -p port username@server_ip
 ```
 
-before lauching run_parser.py run clear_data.py to prepare local(photos dir and csv) and server database
+before lauching `run_parser.py` run `clear_data.py` to prepare local(photos dir and csv) and server database
