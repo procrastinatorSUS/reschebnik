@@ -40,6 +40,13 @@ cp .env.example .env
 #create own ssh key
 ssh-keygen -t ed25519
 
+#share public key to server:
 ssh-copy-id -i ~\.ssh\id_ed25519.pub username@server_ip
+
+#if u use custom port:
+ ssh-copy-id -i ~\.ssh\id_ed25519.pub -p custom_port username@server_ip
+
+#now you can connect to your server:
+ssh -i path_to_your_private_key -p port username@server_ip
 ```
 
