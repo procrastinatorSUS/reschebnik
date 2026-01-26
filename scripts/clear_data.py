@@ -2,16 +2,14 @@ import csv
 import os
 import shutil
 import sys
-from dotenv import load_dotenv
-
-load_dotenv()
-
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, project_root)
 
 from src.common.database.connection import connect_with_database
 from src.parser.config import fieldnames
+from src.common.config import config
 
+db = config.db
 
 def clear_csv():
     try:
@@ -43,8 +41,7 @@ def clear_table(sql_data):
 
 def clear_photos_server(ssh):
     try:
-        ssh.exec_command(f'rm -rf {os.getenv('SERVER_PHOTO_DIR_PATH')}')
-        ssh.exec_command(f'mkdir {os.getenv('SERVER_PHOTO_DIR_PATH')}')
+        ssh.exec_command(f'rm -rf {db.SERVER_PHOTO_DIR_PATH} && mkdir {db.SERVER_PHOTO_DIR_PATH}')
         print('данные на севрере удалены')
     except Exception as e:
         print(f'ошибка при очистке заданий на стороне сервера: {e}')

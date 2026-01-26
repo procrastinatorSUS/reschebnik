@@ -1,27 +1,28 @@
-import os
 import paramiko
 import psycopg2
 from typing import Callable
-from dotenv import load_dotenv
 
-load_dotenv()
+from config import config
+
+db = config.db
+
 
 def connect_with_database(f: Callable):
     def wrapper(*args, **kwargs):
         conn = psycopg2.connect(
-            dbname=os.getenv('DB_NAME'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            host=os.getenv('DB_HOST'),
-            port=int(os.getenv('DB_PORT'))
+            dbname=db.DB_HOST,
+            user=db.DB_USER,
+            password=db.DB_PASSWORD,
+            host=db.DB_HOST,
+            port=db.DB_PORT
         )
         cur = conn.cursor()
 
         print('соединение с сервером установлено')
 
-        key = paramiko.Ed25519Key.from_private_key_file(os.getenv('SSH_KEY_PATH'), os.getenv('SSH_KEY_PASSPHRASE'))
-        transport = paramiko.Transport((os.getenv('SSH_HOST'), int(os.getenv('SSH_PORT'))))
-        transport.connect(username=os.getenv('SSH_USERNAME'), pkey=key)
+        key = paramiko.Ed25519Key.from_private_key_file(db.SSH_KEY_PATH, db.SSH_KEY_PASSPHRASE)
+        transport = paramiko.Transport((db.SSH_HOST, db.SSH_PORT))
+        transport.connect(username=db.SSH_USERNAME, pkey=key)
         sftp = paramiko.SFTPClient.from_transport(transport)
         print('sftp соединение установлено')
         ssh = paramiko.SSHClient()
